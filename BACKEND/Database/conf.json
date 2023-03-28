@@ -1,0 +1,19 @@
+{
+    "DevConfig":{
+        "service":{
+            "host": "127.0.0.1",
+            "port": 5000
+        },
+        "db":{
+            "host": "localhost",
+            "user": "root",
+            "passsword": "",
+            "database": "repositorioUiepa"
+        }
+
+    } 
+
+}
+
+
+

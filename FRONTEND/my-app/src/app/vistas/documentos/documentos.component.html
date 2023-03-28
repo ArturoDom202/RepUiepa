@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <title>Documentos</title>
+
+
+</head>
+
+<body class=""  style=" background-color: #bdbdbd">
+
+    <br>
+    <div class="container " style="background: #ffff; border: 1px solid #bdbdbd; box-shadow: 5px 5px 5px rgba(0,0,0,0.5); padding: 30px; padding-left: 20px; padding-right: 30px; border-radius: 20px;">
+        <form #documentForm="ngForm" (ngSubmit)="addDocuments(documentForm)">
+            <div class="row" style="padding-top: 15px">
+                <div class="col-md-12">
+                    <h2 style="text-align: center;">AGREGAR DOCUMENTOS</h2> </div>
+            </div>
+            <hr style="background-color: black">
+            <!------------------------------------------------------------------------------------------>
+            <br>
+            <div style="padding-left: 100px;">
+            <div class="row" style="padding-top: 15px" >
+                <div class="col-md-2" >
+                         <b><label style="font-size: 20px;">Id.Documento:</label></b>
+                         <input name="id_documento" readonly #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.id_documento" type="text" class="form-control"> 
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <b><label style="font-size:20px;">Titulo:</label></b> 
+                        <input class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.titulo" name="titulo" type="text" required>
+                    </div>
+            </div>
+            <div class="row" style="padding-top: 15px">
+                <div class=" col-md-10">
+                    <b><label style="font-size: 20px;">Descripcion:</label></b>
+                    <textarea  class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.descripcion" name="descripcion" type="text" required></textarea>
+                </div>
+            </div>
+            <!------------------------------------------------------------------------------------------>
+            <div class="row" style="padding-top: 15px">
+                <div class="col-md-10">
+                    <b><label style="font-size:20px;">Autor:</label></b> 
+                    <input class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.autor" name="autor" type="text" required>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 15px">
+                <div class="col-md-10">
+                    <b><label style="font-size:20px;">Fecha de publicacion:</label></b> 
+                    <input class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.fecha_public" name="fecha_public" type="date" required>
+                </div>
+            </div>
+            <!------------------------------------------------------------------------------------------>
+            <div class="row" style="padding-top: 15px">
+            
+                <div class="col-md-5" >
+                    <b><label style="font-size:20px;">Seleccionar imagen</label></b>
+                    <input class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.img" name="img" type="text" required > 
+                </div>
+                     
+                <div class="col-md-5" >
+                    <b><label style="font-size:20px;">Selecionar archivo</label></b>
+                    <input class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.pdf" name="pdf" type="text" required>
+                 </div>
+            </div>
+            <!------------------------------------------------------------------------------------------>
+            <div class="row" style="padding-top: 15px">
+                <div class="col-md-5" >
+                    <b><label style="font-size:20px;">Tipo de Documento:</label></b>
+                    <select class="form-control" name="id_tipo_documento" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.id_tipo_documento"   required>
+                        <option value=""> --seleccione un tipo-- </option>
+                        <option value="1"> PDF </option>
+                        <option value="2"> Word </option>
+                    </select>
+                </div>
+                <div class="col-md-5" >
+                    <b><label style="font-size:20px;">Area:</label></b>
+                    <select class="form-control" name="id_area"   #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.id_area"required>
+                        <option value=""> --seleccione un tipo-- </option>
+                        <option value="1"> Investigacion </option>
+                        <option value="2"> Reporte de estadia </option>
+                    </select>
+                </div>
+            </div>
+           </div>
+            <hr style="background-color: black">
+            <!------------------------------------------------------------------------------------------>
+            <div class="row" style="padding-top: 15px; text-align: center">
+                <div class="col-md-2"></div>
+                <!----------------------------------------BOTON GUARDAR-------------------------------------------------->
+                <div class="col-md-3" style="text-align:left">
+                    <a >
+                        <button class="btn btn-outline-primary" name="btn_guardar" style="font-size: 1.2rem ; width:10rem" type="submit"> <span class="bi bi-box-arrow-in-left">
+							GUARDAR
+						</span> </button>
+                    </a>
+                </div>
+                <!----------------------------------BOTON VOLVER-------------------------------------------------------->
+                <div class="col-md-3" style="text-align:left">
+                    <a href="/documentos">
+                        <button class="btn btn-outline-danger" name="btn_cancelar" style="font-size: 1.2rem ; width:10rem" type="button"> <span class="bi bi-box-arrow-in-left">
+							CANCELAR
+						</span> </button>
+                    </a>
+                </div>
+                <!------------------------------------------------------------------------------------------>
+                   <!----------------------------------BOTON VOLVER-------------------------------------------------------->
+                   <div class="col-md-3" style="text-align:left">
+                    <a >
+                        <button class="btn btn-outline-success" (click)="updateDocuments(documentForm)" name="btn_actualizar" style="font-size: 1.2rem ; width:10rem" type="button"> <span class="bi bi-box-arrow-in-left">
+							ACTUALIZAR
+						</span> </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+        <br>
+        <hr>
+        <br>
+        <table class="table table-striped" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Modificar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr *ngFor="let documents of documentsService.documents">
+                    <th scope="row">{{documents.id_documento}}</th>
+                    <td>{{documents.titulo}}</td>
+                    <td>{{documents.descripcion}}</td>
+                    <td>{{documents.autor}}</td>
+                    <td>{{documents.fecha_public}}</td>
+                    <td>{{documents.id_area}}</td>
+                    <td><a ><span (click)="selectedDocuments(documents)"class="bi-clipboard2-plus" style="font-size: 1.2rem; color: blueviolet;"></span></a></td>
+                    <td><a ><span (click)="deleteDocuments(documents.id_documento)" class="bi-trash" style="font-size: 1.2rem; color: red;"></span></a></td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+    </div>
+    <br>
+
+
+</body>
+
+
+</html>
