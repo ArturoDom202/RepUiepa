@@ -11,12 +11,31 @@ import {NgForm} from '@angular/forms';
 })
 export class DocumentsComponent implements OnInit {
   title = 'my-documents';
+
+  private fileTmp:any;
+  private imgTmp:any;
+
   constructor(public documentsService:DocumentsService){
   }
 //funcion onInit
   ngOnInit(): void {
      this.getDocuments();
   }
+  getFile($event:any):void{
+    const [file] = $event.target.files;
+    this.fileTmp ={
+      fileRaw:file,
+      fileName:file.name
+    }
+  }
+  getIMG($event:any):void{
+    const [file] = $event.target.files;
+    this.imgTmp ={
+      imgRaw:file,
+      imgName:file.name
+    }
+  }
+
   //funcion para obtener datos components
   getDocuments(){
     this.documentsService.getDocuments().subscribe(res=>{
@@ -38,11 +57,29 @@ export class DocumentsComponent implements OnInit {
     
       
   }
+ 
+
   addDocuments( form:NgForm ){
-    console.log(form.value);
-    this.documentsService.postDocuments(form.value).subscribe(res=>{
+   
+    if(form.invalid){
+      return;
+        }
+        const body = new FormData();
+
+        body.append('titulo',this.documentsService.selectedDocuments.titulo);
+        body.append('descripcion',this.documentsService.selectedDocuments.descripcion);
+        body.append('autor',this.documentsService.selectedDocuments.autor);
+        body.append('fecha_public',this.documentsService.selectedDocuments.fecha_public);
+        body.append('pdf',this.fileTmp.fileRaw,this.fileTmp.fileName);
+        body.append('img',this.imgTmp.imgRaw,this.imgTmp.imgName);
+        body.append('id_area',this.documentsService.selectedDocuments.id_area);
+        body.append('id_tipo_documento',this.documentsService.selectedDocuments.id_tipo_documento);
+        
+  
+    this.documentsService.postDocuments(body)
+    .subscribe(res=>{
       console.log(res);
-      this.getDocuments()
+      this.getDocuments();
     } )
   }
   updateDocuments( form:NgForm){

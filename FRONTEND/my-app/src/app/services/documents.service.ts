@@ -18,9 +18,11 @@ getDocuments(){//funcion para obtener datos de la BD
 
   return this.http.get( this.URL_API);
 }
-postDocuments(Documents:Documents){//funcion para obtener datos de la BD
-  return this.http.post( this.URL_API,Documents);
+postDocuments(documents:FormData){//funcion para obtener datos de la BD
+  
+  return this.http.post( this.URL_API,documents);
 }
+
 updateDocuments(Documents:Documents){//funcion para obtener datos de la BD
   return this.http.patch( this.URL_API,Documents);
 }

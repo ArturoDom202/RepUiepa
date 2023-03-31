@@ -1,7 +1,7 @@
 'use strict'
 const express = require('express');
-//const upload = require('../Controllers/upload');
-//const uploadimg = require('../Controllers/uploadimg');
+const upload = require('../Controllers/upload');
+
 
 class Router {
     #router;
@@ -29,9 +29,10 @@ class Router {
     
         this.#router.get('/documents' , this.#documentsController.getAll);
         this.#router.get('/documents:id_documento' , this.#documentsController.getOne);//recibeparametro
-        this.#router.post('/documents' , this.#documentsController.insert);
+        this.#router.post('/documents',upload.upload,this.#documentsController.insert);
         this.#router.patch('/documents' , this.#documentsController.update);
         this.#router.delete('/documents:id_documento' , this.#documentsController.delete);
+
 
     }
 

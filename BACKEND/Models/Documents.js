@@ -45,8 +45,7 @@ class Documents{
             let data = object
             return callback(data);
         });
-        return; // return mes.values;
-        //console.log(mes.values);
+        return ;
    }
 
    //sentencia o procedimiento UPDATE, para insertar datos de la tabla

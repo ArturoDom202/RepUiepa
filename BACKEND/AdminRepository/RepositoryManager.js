@@ -33,6 +33,8 @@ class RepositoryManager{
     prepareService = async() =>{
         this.#appExpress.use(bodyParser.json());
         this.#appExpress.use(cors('origin:http://localhost:4200/'));
+        this.#appExpress.use(express.static('./Archivos/pdfs'));
+        this.#appExpress.use(express.static('./Archivos/images'));
         this.#appExpress.use(bodyParser.urlencoded({
             extended: true
         }));

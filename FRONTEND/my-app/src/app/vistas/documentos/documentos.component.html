@@ -22,7 +22,7 @@
 
     <br>
     <div class="container " style="background: #ffff; border: 1px solid #bdbdbd; box-shadow: 5px 5px 5px rgba(0,0,0,0.5); padding: 30px; padding-left: 20px; padding-right: 30px; border-radius: 20px;">
-        <form #documentForm="ngForm" (ngSubmit)="addDocuments(documentForm)">
+        <form #documentForm="ngForm">
             <div class="row" style="padding-top: 15px">
                 <div class="col-md-12">
                     <h2 style="text-align: center;">AGREGAR DOCUMENTOS</h2> </div>
@@ -66,12 +66,14 @@
             
                 <div class="col-md-5" >
                     <b><label style="font-size:20px;">Seleccionar imagen</label></b>
-                    <input class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.img" name="img" type="text" required > 
+                    <input class="form-control" (change)="getIMG($event)"  accept=".jpg" name="img" type="file" required > 
+                 
                 </div>
                      
                 <div class="col-md-5" >
                     <b><label style="font-size:20px;">Selecionar archivo</label></b>
-                    <input class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.pdf" name="pdf" type="text" required>
+                    <input class="form-control"  (change)="getFile($event)"  accept=".pdf" name="pdf" type="file" required > 
+                
                  </div>
             </div>
             <!------------------------------------------------------------------------------------------>
@@ -86,10 +88,11 @@
                 </div>
                 <div class="col-md-5" >
                     <b><label style="font-size:20px;">Area:</label></b>
-                    <select class="form-control" name="id_area"   #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.id_area"required>
+                    <select  class="form-control" name="id_area"   #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.id_area" required>
                         <option value=""> --seleccione un tipo-- </option>
                         <option value="1"> Investigacion </option>
                         <option value="2"> Reporte de estadia </option>
+                      
                     </select>
                 </div>
             </div>
@@ -101,7 +104,7 @@
                 <!----------------------------------------BOTON GUARDAR-------------------------------------------------->
                 <div class="col-md-3" style="text-align:left">
                     <a >
-                        <button class="btn btn-outline-primary" name="btn_guardar" style="font-size: 1.2rem ; width:10rem" type="submit"> <span class="bi bi-box-arrow-in-left">
+                        <button class="btn btn-outline-primary" (click)="addDocuments(documentForm)"  name="btn_guardar" style="font-size: 1.2rem ; width:10rem" type="button"> <span class="bi bi-box-arrow-in-left">
 							GUARDAR
 						</span> </button>
                     </a>
@@ -137,6 +140,7 @@
                     <th scope="col">Autor</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">Ruta</th>
                     <th scope="col">Modificar</th>
                     <th scope="col">Eliminar</th>
                 </tr>
@@ -150,6 +154,7 @@
                     <td>{{documents.autor}}</td>
                     <td>{{documents.fecha_public}}</td>
                     <td>{{documents.id_area}}</td>
+                    <td><a  class="bi-file-earmark-pdf-fill" href='{{documents.pdf}}' target="_blank"></a></td>
                     <td><a ><span (click)="selectedDocuments(documents)"class="bi-clipboard2-plus" style="font-size: 1.2rem; color: blueviolet;"></span></a></td>
                     <td><a ><span (click)="deleteDocuments(documents.id_documento)" class="bi-trash" style="font-size: 1.2rem; color: red;"></span></a></td>
                 </tr>

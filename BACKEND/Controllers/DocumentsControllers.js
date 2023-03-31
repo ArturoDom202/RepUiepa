@@ -30,8 +30,16 @@ class DocumentsControllers{
         });
     }
 
-   insert = async (req, resp) => {
+    insert= async (req,resp)=>{
+       
+        const file= req.files['pdf'][0].filename;
+        const image = req.files['img'][0].filename;
+
+        const urlpdf =`http://localhost:5000/${file}`;
+        const urlimg =`http://localhost:5000/${image}`;
+
         console.log(req.body.titulo);
+
         let{ id_documento, titulo, descripcion, autor, fecha_public, pdf, img, id_area, id_tipo_documento, id_usuario } = req.body;
         let documents = {
             id_documento:"null",
@@ -39,13 +47,13 @@ class DocumentsControllers{
             descripcion:descripcion,
             autor:autor,
             fecha_public:fecha_public,
-            pdf:pdf,
-            img:img,
+            pdf:urlpdf,
+            img:urlimg,
             id_area:id_area,
             id_tipo_documento:id_tipo_documento,
             id_usuario:12
         };
-        
+       
         let data = await Documents.insert(documents, (callback)=>{
             resp.status(200).json(callback);
         });
