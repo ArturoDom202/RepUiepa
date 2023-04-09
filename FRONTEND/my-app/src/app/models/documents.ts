@@ -9,6 +9,7 @@ export class Documents {
     id_area:string;
     id_tipo_documento:string;
     id_usuario:string;
+    
  
     
     constructor(id_documento='',titulo='',descripcion='',autor='',fecha_public='',pdf='',img='',id_area='',id_tipo_documento='',id_usuario='')
