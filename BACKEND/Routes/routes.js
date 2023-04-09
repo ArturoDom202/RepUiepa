@@ -5,7 +5,8 @@ const upload = require('../Controllers/upload');
 
 class Router {
     #router;
-   // #contentController;
+
+    #contentController;
     #usersController;
     #documentsController;
     //#homeController
@@ -15,9 +16,10 @@ class Router {
         this.#router = express.Router();
         Object.preventExtensions(this);
     }
-    attachControllers = async(usersController,documentsController) =>{
+    attachControllers = async(usersController,documentsController,contentController) =>{
         this.#usersController = usersController;
         this.#documentsController = documentsController;
+        this.#contentController = contentController;
     }
     
     prepareRouting = async() => {
@@ -33,6 +35,7 @@ class Router {
         this.#router.patch('/documents' , this.#documentsController.update);
         this.#router.delete('/documents:id_documento' , this.#documentsController.delete);
 
+        this.#router.get('/content' , this.#contentController.getAll);
 
     }
 

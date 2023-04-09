@@ -11,6 +11,7 @@ const UsersControllers = require('../Controllers/UsersControllers');
 //lineas para importar routes
 const Router = require('../Routes/routes');
 const DocumentsControllers = require('../Controllers/DocumentsControllers');
+const ContentControllers = require('../Controllers/ContentControllers');
 
 class RepositoryManager{
     #appExpress;
@@ -47,8 +48,9 @@ class RepositoryManager{
         const oRouter = new Router();
         const usersControllers = new UsersControllers();
        const documentsControllers = new DocumentsControllers();
+       const contentControllers = new ContentControllers();
 
-        oRouter.attachControllers(usersControllers,documentsControllers);
+        oRouter.attachControllers(usersControllers,documentsControllers,contentControllers);
    
         oRouter.prepareRouting();
         this.#appExpress.use('/api', oRouter.getRouter());
