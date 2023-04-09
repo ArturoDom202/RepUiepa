@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import { DocumentsComponent } from './vistas/documentos/documentos.component';
 import { UsuariosComponent } from './vistas/usuarios/usuarios.component';
+import { ContenidosComponent } from './vistas/contenidos/contenidos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuariosComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    ContenidosComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,7 @@ import { UsuariosComponent } from './vistas/usuarios/usuarios.component';
     FormsModule,
     RouterModule.forRoot([
       {path:'usuarios',component:UsuariosComponent},
+      {path:'contenidos',component:ContenidosComponent},
        {path :'documentos',component:DocumentsComponent}
     ])
   ],
