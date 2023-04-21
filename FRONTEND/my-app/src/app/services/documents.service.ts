@@ -9,6 +9,8 @@ export class DocumentsService {
 
   selectedDocuments:Documents;
   documents: Documents[] = [];
+  area: Documents [] = [];
+  tipo: Documents [] = [];
   readonly URL_API ='http://localhost:5000/api/Documents';
 
 constructor(private http:HttpClient) { 
@@ -17,6 +19,14 @@ constructor(private http:HttpClient) {
 getDocuments(){//funcion para obtener datos de la BD
 
   return this.http.get( this.URL_API);
+}
+getArea(){//funcion para obtener datos de la BD
+
+  return this.http.get( this.URL_API+'/area');
+}
+getTipo(){//funcion para obtener datos de la BD
+
+  return this.http.get( this.URL_API+'/tipo');
 }
 postDocuments(documents:FormData){//funcion para obtener datos de la BD
   

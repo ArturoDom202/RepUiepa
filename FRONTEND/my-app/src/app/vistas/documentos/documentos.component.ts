@@ -20,6 +20,9 @@ export class DocumentsComponent implements OnInit {
 //funcion onInit
   ngOnInit(): void {
      this.getDocuments();
+     this.getArea();
+     this.getTipo();
+
   }
   getFile($event:any):void{
     const [file] = $event.target.files;
@@ -41,6 +44,20 @@ export class DocumentsComponent implements OnInit {
     this.documentsService.getDocuments().subscribe(res=>{
       //console.log(res);
       this.documentsService.documents=res as Documents[];
+    }
+    )
+  }
+  getArea(){
+    this.documentsService.getArea().subscribe(res=>{
+      //console.log(res);
+      this.documentsService.area=res as Documents[];
+    }
+    )
+  }
+  getTipo(){
+    this.documentsService.getTipo().subscribe(res=>{
+      //console.log(res);
+      this.documentsService.tipo=res as Documents[];
     }
     )
   }

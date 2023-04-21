@@ -13,6 +13,22 @@ class DocumentsControllers{
             resp.status(200).json(data);
         });
     }
+    getArea = async(req, resp) => {
+        let data;
+
+        await Documents.fetchArea((callback)=>{
+            data = callback;
+            resp.status(200).json(data);
+        });
+    }
+    getTipo = async(req, resp) => {
+        let data;
+
+        await Documents.fetchTipo((callback)=>{
+            data = callback;
+            resp.status(200).json(data);
+        });
+    }
      getOne = async (req, resp) =>{
         let data;
         

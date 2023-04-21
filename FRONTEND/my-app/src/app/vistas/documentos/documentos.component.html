@@ -45,7 +45,7 @@
             <div class="row" style="padding-top: 15px">
                 <div class=" col-md-10">
                     <b><label style="font-size: 20px;">Descripcion:</label></b>
-                    <textarea  class="form-control" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.descripcion" name="descripcion" type="text" required></textarea>
+                    <textarea  class="form-control" maxlength="60" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.descripcion" name="descripcion" type="text" required></textarea>
                 </div>
             </div>
             <!------------------------------------------------------------------------------------------>
@@ -82,16 +82,17 @@
                     <b><label style="font-size:20px;">Tipo de Documento:</label></b>
                     <select class="form-control" name="id_tipo_documento" #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.id_tipo_documento"   required>
                         <option value=""> --seleccione un tipo-- </option>
-                        <option value="1"> PDF </option>
-                        <option value="2"> Word </option>
+                        <option  *ngFor="let tipo of documentsService.tipo" value="{{tipo.id_tipo_documento
+                        }}">{{tipo.descripcion}}</option>
                     </select>
                 </div>
                 <div class="col-md-5" >
                     <b><label style="font-size:20px;">Area:</label></b>
                     <select  class="form-control" name="id_area"   #name="ngModel" [(ngModel)]="documentsService.selectedDocuments.id_area" required>
-                        <option value=""> --seleccione un tipo-- </option>
-                        <option value="1"> Investigacion </option>
-                        <option value="2"> Reporte de estadia </option>
+                        <option value=""> --seleccione un area-- </option>
+                        
+                        <option  *ngFor="let area of documentsService.area" value="{{area.id_area
+                        }}">{{area.descripcion}}</option>
                       
                     </select>
                 </div>

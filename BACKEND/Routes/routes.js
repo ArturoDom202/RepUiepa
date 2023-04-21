@@ -37,6 +37,9 @@ class Router {
 
         this.#router.get('/content' , this.#contentController.getAll);
 
+        this.#router.get('/documents/area' , this.#documentsController.getArea);
+        this.#router.get('/documents/tipo' , this.#documentsController.getTipo);
+
     }
 
     getRouter = () => {

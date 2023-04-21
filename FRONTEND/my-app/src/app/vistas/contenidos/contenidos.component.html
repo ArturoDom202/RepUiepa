@@ -22,25 +22,27 @@
 
         <br>
     <div class="container">
+      
         <div class="row">
-
+         
        <div class="col-md-4" *ngFor="let content of contentService.content">
         <div class="card mb-3 col"  >
             <div class="row g-0">
               <div class="col-md-4">
                 <a href="{{content.pdf}}" target="_blank">
-                     <img src="{{content.img}}" class="img-fluid rounded-start" alt="...">
+                     <img src="{{content.img}}" class=" rounded-start" [ngStyle]="{ 'height': tamano }" width="100%" alt="Fondo">
                 </a>
             </div>
+          
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">{{content.titulo}}</h5>
-                  <p class="card-text">{{content.descripcion}}.</p>
+                  <p class="card-text">{{content.descripcion}}...</p>
                   <p >{{content.autor}}.</p>
                   <p ><small class="text-body-secondary">{{content.fecha_public}}</small></p>
                 
                   <span class='bi-star-fill'></span> <span class='bi-star-fill'></span> <span class='bi-star-fill'></span>
-             
+                
                 </div>
               </div>
             </div>

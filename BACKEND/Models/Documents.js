@@ -16,7 +16,26 @@ class Documents{
        });
     return;
    }
-  
+   fetchArea = async (callback) => {     
+        const connectiondb= new Connectiondb();
+            let data = 'SELECT * FROM area';
+            let conn = (await connectiondb.setupDatabase()).conn;
+        let sql = conn.query(data, (error, result) => {
+            if(error)throw error;
+        return callback(result);
+        });
+    return;
+    }
+    fetchTipo = async (callback) => {     
+        const connectiondb= new Connectiondb();
+            let data = 'SELECT * FROM tipo_documento';
+            let conn = (await connectiondb.setupDatabase()).conn;
+        let sql = conn.query(data, (error, result) => {
+            if(error)throw error;
+        return callback(result);
+        });
+    return;
+    }
    //fetchOne, 2do procedimiento es para comprobar datos de la tabla
    fetchOne = async(object, callback) => {
         let msg; // linea de mensaje al hacer consulta
