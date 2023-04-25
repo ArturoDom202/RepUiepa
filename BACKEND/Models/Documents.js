@@ -8,7 +8,7 @@ class Documents{
    //fetch, 1er procedimiento es para recuperar datos de la tabla
    fetch = async (callback) => {     
        const connectiondb= new Connectiondb();
-            let data = 'SELECT * FROM documentos';
+            let data = 'SELECT * FROM documentos, area WHERE documentos.id_area = area.id_area ';
             let conn = (await connectiondb.setupDatabase()).conn;
        let sql = conn.query(data, (error, result) => {
             if(error)throw error;

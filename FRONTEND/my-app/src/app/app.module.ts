@@ -23,7 +23,7 @@ import { ContentComponent } from './vistas/contenidos/contenidos.component';
     FormsModule,
     RouterModule.forRoot([
       {path:'usuarios',component:UsuariosComponent},
-      {path:'contenidos',component:ContentComponent},
+      {path:'',component:ContentComponent},
        {path :'documentos',component:DocumentsComponent}
     ])
   ],

@@ -8,7 +8,7 @@ class Users{
    //fetch, 1er procedimiento es para recuperar datos de la tabla
    fetch = async (callback) => {     
        const connectiondb= new Connectiondb();
-            let data = 'SELECT * FROM usuarios';
+            let data = 'SELECT * FROM usuarios, tipo_usuario WHERE usuarios.id_tipo_usuario = tipo_usuario.id_tipo_usuario';
             let conn = (await connectiondb.setupDatabase()).conn;
        let sql = conn.query(data, (error, result) => {
             if(error)throw error;
